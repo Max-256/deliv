@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Image,
   TextInput,
+  ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
 import {
@@ -15,6 +16,7 @@ import {
   Entypo,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import Categories from "../components/Categories";
 
 function HomeScreen(props) {
   const navigation = useNavigation();
@@ -64,6 +66,12 @@ function HomeScreen(props) {
           name="abacus"
         />
       </View>
+
+      {/* body */}
+
+      <ScrollView>
+        <Categories />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -102,7 +110,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     alignItems: "center",
-    backgroundColor: "lightsgray",
+    backgroundColor: "lightgray",
     flexDirection: "row",
     flex: 1,
     padding: 2,
