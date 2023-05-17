@@ -1,8 +1,20 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useLayoutEffect } from "react";
-import { View, StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+  TextInput,
+} from "react-native";
 import Constants from "expo-constants";
-import { EvilIcons, Entypo } from "@expo/vector-icons";
+import {
+  AntDesign,
+  EvilIcons,
+  Entypo,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 function HomeScreen(props) {
   const navigation = useNavigation();
@@ -15,6 +27,7 @@ function HomeScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* header */}
       <View style={styles.header}>
         <View style={styles.detailsContainer}>
           <Image style={styles.image} source={require("../assets/del.jpg")} />
@@ -28,15 +41,41 @@ function HomeScreen(props) {
         </View>
         <EvilIcons name="user" size={40} color="#00ccbb" />
       </View>
+
+      {/* search-box */}
+
+      <View style={styles.searchContainer}>
+        <View style={styles.searchBox}>
+          <AntDesign
+            color="#00ccbb"
+            style={styles.searchIcon}
+            name="search1"
+            size={20}
+          />
+          <TextInput
+            placeholder="Restaurants and Cousins"
+            keyboardType="default"
+          />
+        </View>
+        <MaterialCommunityIcons
+          style={styles.abacus}
+          color="#00ccbb"
+          size={23}
+          name="abacus"
+        />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  abacus: {
+    margin: 5,
+  },
   container: {
     backgroundColor: "#ffff",
-    padding: 5,
-    paddingTop: Constants.statusBarHeight + 10,
+    padding: 7,
+    paddingTop: Constants.statusBarHeight + 20,
   },
   detailsContainer: {
     flexDirection: "row",
@@ -60,6 +99,21 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 17,
     fontWeight: "bold",
+  },
+  searchBox: {
+    alignItems: "center",
+    backgroundColor: "lightsgray",
+    flexDirection: "row",
+    flex: 1,
+    padding: 2,
+  },
+  searchContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    marginVertical: 10,
+  },
+  searchIcon: {
+    padding: 5,
   },
 });
 
