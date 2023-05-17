@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useLayoutEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   StyleSheet,
   Text,
-  SafeAreaView,
   Image,
   TextInput,
   ScrollView,
@@ -17,6 +17,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import Categories from "../components/Categories";
+import FeatureRow from "../components/FeatureRow";
 
 function HomeScreen(props) {
   const navigation = useNavigation();
@@ -28,49 +29,66 @@ function HomeScreen(props) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       {/* header */}
-      <View style={styles.header}>
-        <View style={styles.detailsContainer}>
-          <Image style={styles.image} source={require("../assets/del.jpg")} />
-          <View>
-            <Text style={styles.deliver}>Deliver now</Text>
-            <Text style={styles.location}>
-              Current Location{" "}
-              <Entypo color="#00ccbb" name="chevron-down" size={15} />
-            </Text>
+      <View style={styles.head}>
+        <View style={styles.header}>
+          <View style={styles.detailsContainer}>
+            <Image style={styles.image} source={require("../assets/del.jpg")} />
+            <View>
+              <Text style={styles.deliver}>Deliver now</Text>
+              <Text style={styles.location}>
+                Current Location{" "}
+                <Entypo color="#00ccbb" name="chevron-down" size={15} />
+              </Text>
+            </View>
           </View>
+          <EvilIcons name="user" size={40} color="#00ccbb" />
         </View>
-        <EvilIcons name="user" size={40} color="#00ccbb" />
-      </View>
 
-      {/* search-box */}
+        {/* search-box */}
 
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBox}>
-          <AntDesign
+        <View style={styles.searchContainer}>
+          <View style={styles.searchBox}>
+            <AntDesign
+              color="#00ccbb"
+              style={styles.searchIcon}
+              name="search1"
+              size={20}
+            />
+            <TextInput
+              placeholder="Restaurants and Cousins"
+              keyboardType="default"
+            />
+          </View>
+          <MaterialCommunityIcons
+            style={styles.abacus}
             color="#00ccbb"
-            style={styles.searchIcon}
-            name="search1"
-            size={20}
-          />
-          <TextInput
-            placeholder="Restaurants and Cousins"
-            keyboardType="default"
+            size={23}
+            name="abacus"
           />
         </View>
-        <MaterialCommunityIcons
-          style={styles.abacus}
-          color="#00ccbb"
-          size={23}
-          name="abacus"
-        />
       </View>
 
       {/* body */}
 
-      <ScrollView>
+      <ScrollView style={styles.body}>
         <Categories />
+        <FeatureRow
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured category"
+        />
+        <FeatureRow
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured category"
+        />
+        <FeatureRow
+          title="Featured"
+          description="Paid placements from our partners"
+          featuredCategory="featured category"
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -80,10 +98,8 @@ const styles = StyleSheet.create({
   abacus: {
     margin: 5,
   },
-  container: {
-    backgroundColor: "#ffff",
+  body: {
     padding: 7,
-    paddingTop: Constants.statusBarHeight + 20,
   },
   detailsContainer: {
     flexDirection: "row",
@@ -92,10 +108,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     opacity: 0.5,
   },
+  head: {
+    backgroundColor: "#fff",
+    padding: 7,
+    paddingTop: Constants.statusBarHeight,
+  },
   header: {
+    alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
   },
   image: {
     width: 40,
