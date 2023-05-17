@@ -1,16 +1,29 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React, { useLayoutEffect } from "react";
+import { View, StyleSheet, Text, SafeAreaView } from "react-native";
+import Constants from "expo-constants";
 
 function HomeScreen(props) {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Home screen </Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+  },
 });
 
 export default HomeScreen;
